@@ -1,3 +1,5 @@
+package leetcode
+
 func minimumLevels(possible []int) int {
 	var sum [100100]int
 	var n int

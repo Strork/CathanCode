@@ -1,3 +1,5 @@
+package leetcode75
+
 func mergeAlternately(word1 string, word2 string) string {
 	var ans string
 	n := len(word1)

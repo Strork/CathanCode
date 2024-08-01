@@ -1,3 +1,5 @@
+package leetcode75
+
 func countBits(n int) []int {
 	ans := make([]int, n+1)
 	for i := 1; i <= n; i++ {

@@ -1,3 +1,5 @@
+package leetcode
+
 func mergeAlternately(word1 string, word2 string) string {
 	var ans string
 	n := len(word1)
@@ -6,10 +8,10 @@ func mergeAlternately(word1 string, word2 string) string {
 	}
 	for i := 0; i < n; i++ {
 		if i < len(word1) {
-			ans += word1[i]
+			ans += string(word1[i])
 		}
 		if i < len(word2) {
-			ans += word2[i]
+			ans += string(word2[i])
 		}
 	}
 	return ans

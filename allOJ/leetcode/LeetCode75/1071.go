@@ -1,3 +1,7 @@
+package leetcode75
+
+import "strings"
+
 func gcdOfStrings(str1 string, str2 string) string {
 	len1, len2 := len(str1), len(str2)
 	var suf, ans string

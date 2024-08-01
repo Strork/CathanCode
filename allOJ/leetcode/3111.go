@@ -1,3 +1,7 @@
+package leetcode
+
+import "sort"
+
 func minRectanglesToCoverPoints(points [][]int, w int) int {
 	sort.Slice(points, func(i, j int) bool {
 		return points[i][0] < points[j][0]

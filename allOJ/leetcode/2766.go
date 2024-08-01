@@ -1,3 +1,10 @@
+package leetcode
+
+import (
+	"fmt"
+	"sort"
+)
+
 func relocateMarbles(nums []int, moveFrom []int, moveTo []int) []int {
 	var id [200100]int //id[]对应原本下标
 	var f [200100]bool

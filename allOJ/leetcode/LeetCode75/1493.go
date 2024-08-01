@@ -1,3 +1,5 @@
+package leetcode75
+
 func longestSubarray(nums []int) int {
 	var x = [2]int{-1, -1}
 	var y = [2]int{-1, -1}

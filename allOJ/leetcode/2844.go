@@ -1,3 +1,5 @@
+package leetcode
+
 func minimumOperations(num string) int {
 	var ans = 500
 	var ff = false

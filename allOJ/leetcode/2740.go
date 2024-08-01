@@ -1,3 +1,10 @@
+package leetcode
+
+import (
+	"fmt"
+	"sort"
+)
+
 func findValueOfPartition(nums []int) int {
 	sort.Slice(nums, func(i, j int) bool {
 		return nums[i] < nums[j]
