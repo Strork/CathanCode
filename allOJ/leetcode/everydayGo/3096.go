@@ -1,4 +1,4 @@
-package leetcode
+package everydaygo
 
 func minimumLevels(possible []int) int {
 	var sum [100100]int

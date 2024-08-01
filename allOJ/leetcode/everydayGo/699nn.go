@@ -1,4 +1,9 @@
-func fallingSquares(positions [][]int) []int {
+package everydaygo
+
+import "fmt"
+
+//func fallingSquares(positions [][]int) []int {
+func FallingSquares(positions [][]int) []int {
 	ans := make([]int, len(positions))
 	high := make([]int, len(positions))
 	maxx := positions[0][1]

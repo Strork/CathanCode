@@ -1,4 +1,4 @@
-package leetcode
+package everydaygo
 
 func minimumOperations(num string) int {
 	var ans = 500

@@ -1,4 +1,4 @@
-package leetcode
+package everydaygo
 
 func getSmallestString(s string, k int) string {
 	t := []byte(s)
