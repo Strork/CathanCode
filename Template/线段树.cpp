@@ -1,10 +1,10 @@
 
-
 struct qaq{
     ll maxx, deladd;
     ll delx;
 }tree[maxn * 4];
 
+#define L(x) (x<<1)
 void push_down(ll id, ll l, ll r) {
     if (tree[id].delx == 1 && tree[id].deladd == 0) return;
     ll tad = tree[id].deladd;
@@ -22,7 +22,7 @@ void push_down(ll id, ll l, ll r) {
 }
 
 void build(ll l, ll r, ll id, ll v) {
-    if (l > y || r < x) return;
+    // if (l > y || r < x) return;
     tree[id].delx = 1;
     tree[id].deladd = 0;
     if (x <= l && r <= y) {
@@ -36,7 +36,7 @@ void build(ll l, ll r, ll id, ll v) {
     return;
 }
 
-void updatax(ll l, ll r, ll id, ll v) {
+void updatamul(ll l, ll r, ll id, ll v) {
     if (l > y || r < x) return;
     if (x <= l && r <= y) {
         tree[id].deladd = (tree[id].deladd * v) % mo;

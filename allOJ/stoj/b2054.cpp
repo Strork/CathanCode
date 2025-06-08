@@ -12,5 +12,7 @@ int main() {
         sum += t;
     }
     printf("%.2lf\n", sum * 1.0 / cnt);
+    string aa;
+    aa.substr(3);
     return 0;
 }
