@@ -63,11 +63,6 @@ int main() {
                     int y = now.y + dy[i]; // 下一个位置的坐标
                     if (x <= 0 || y <= 0 || x >= n+1 || y >= m+1) {
                         find_endpoint = 1;
-                        // for (int i = 1; i <= n; ++i) {
-                        //     for (int j = 1; j <= m; ++j)
-                        //         cout << a[i][j].ch;
-                        //     cout << endl;
-                        // }
                         ans = now.dis + 1;
                         break;
                     }

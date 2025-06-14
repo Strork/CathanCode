@@ -29,10 +29,11 @@ void bfs(int s) {
         int x = q.front();
         cout << x << ' ';
         q.pop();
-        for (auto i : a[x]) {
-            if (!vis[i]) {
-                vis[i] = 1;
-                q.push(i);
+        for (int i = 0; i < a[x].size(); i++) {
+            int y = a[x][i];
+            if (!vis[y]) {
+                vis[y] = 1;
+                q.push(y);
             }
         }
     }
