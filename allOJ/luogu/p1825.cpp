@@ -14,6 +14,8 @@ int dx[] = {1,-1,0,0};
 int dy[] = {0,0,-1,1};
 int sx, sy, fx, fy;
 
+
+
 queue<node> q;
 
 int main() {

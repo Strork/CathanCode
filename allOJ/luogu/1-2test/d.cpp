@@ -11,9 +11,9 @@ int main() {
     for (int i = 1; i <= n; ++i) {
         int s, t, d;
         cin >> s >> t >> d;
-        if (t > tim) tim = t;
-        a[s] += d;
-        a[t+1] -= d;
+        if (t > tim) tim = t; // 最大的时间节点
+        a[s] += d; // 差分左端点
+        a[t+1] -= d; // 差分操作：右端点
     }
     for (int i = 1; i <= tim; ++i) {
         a[i] += a[i-1];
