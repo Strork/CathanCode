@@ -3,53 +3,45 @@ using namespace std;
 int n, g;
 int vtm[30];
 int food[20][30];
-struct qq{
-    int got[30];
-    vector<int> ans_id;
-    int kind;
-    int nowFood;
+struct qq{ // 搜索节点
+    int v[30];   // 目前奶牛已经补充的营养
+    int ans[30]; // 已经吃的饲料的编号
+    int kd = 0;  // 目前已经用了几种饲料
+    int nowFood; // 当前搜索到第几种饲料了
 }csz;
 qq ans;
 
-bool check(qq a) {
+bool check(qq a) { // check 函数验证：营养够了没有
     for (int i = 1; i <= n; ++i) {
         if (a.v[i] < vtm[i]) return false;
     }
     return true;
 }
 
-
 void bfs(int x) {
     queue<qq> q;
     qq st = csz;
-    st.kind = 1;
-    st.ans_id.push_back(x);
+    st.kd = 1;
+    st.ans[1] = x;
     st.nowFood = x;
     for (int i = 1; i <= n; ++i) {
         st.v[i] += food[x][i];
     }
-    // 0 0 0 0
-    // 50 50 50 50
-    // 250 350 250 350
     q.push(st);
     while (!q.empty()) {
         qq id = q.front();
         q.pop();
         id.nowFood++;
         if (id.nowFood <= g) q.push(id); // 不吃这个饲料
-
         if (id.kd < ans.kd && check(id)) {
             ans.kd = id.kd;
             for (int i = 1; i <= id.kd; ++i) ans.ans[i] = id.ans[i];
         }
-        
         id.kd++;
         id.ans[id.kd] = id.nowFood;
         for (int i = 1; i <= n; ++i) id.v[i] += food[id.nowFood][i];
         if (id.nowFood <= g) q.push(id); // 吃了饲料
         if (id.kd < ans.kd && check(id)) {
-
-
             ans.kd = id.kd;
             for (int i = 1; i <= id.kd; ++i) ans.ans[i] = id.ans[i];
         }
@@ -62,9 +54,9 @@ int main() {
         cin >> vtm[i];
     }
     cin >> g;
-    ans.kind = g;
+    ans.kd = g;
     for (int i = 1; i <= g; ++i) {
-        ans.ans_id.push_back(i);
+        ans.ans[i] = i;
         for (int j = 1; j <= n; ++j) {
             cin >> food[i][j];
         }

@@ -1,12 +1,13 @@
 #include <bits/stdc++.h>
 #define ll long long
 using namespace std;
-char ch[234];
+int a[15];
+int A, B, C;
 
 int main() {
-    char a = 16;  // 补码：00010000
-    a = a & 4; //         00000100 = 4
-    a = 00000000
+    char ch = 'a';
+    if (isalnum(ch)) cout << "这是个数字" << endl;
+    if (ch>='a'&&ch<='z'||ch>='A'&&ch<='Z')
     return 0;
 }
 

@@ -1,19 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 int n, m;
-vector<int> a[100500];
-int ans[100500];
-bool f[100500];
+bool a[1005][1005];
+bool f[1005];
+int ans;
 
-int dfs(int x) {
-    for (int i = 0; i < a[x].size(); ++i) {
-        int y = a[x][i];
-        if (!ans[y]) {
-           int t = dfs(y);
-           ans[x] = max(x, t);
-        } else return ans[y];
+void dfs(int x) {
+    f[x] = 1;
+    if (x > ans) ans = x;
+    for (int i = 1; i <= n; ++i) {
+        if (a[x][i] && !f[i]) {
+            dfs(i);
+        }
     }
-    return max(ans[x], x);
 }
 
 int main() {
@@ -21,15 +20,13 @@ int main() {
     for (int i = 1; i <= m; ++i) {
         int x, y;
         cin >> x >> y;
-        a[x].push_back(y);
+        a[x][y] = 1;
     }
     for (int i = 1; i <= n; ++i) {
-
-        if (!f[i]) {
-            int mx = max(dfs(i), i);
-            ans[i] = mx;
-        }
+        memset(f, 0, sizeof(f));
+        ans = 0;
+        dfs(i);
+        cout << ans << ' ';
     }
-    for (int i = 1; i <= n; ++i) cout << ans[i] << ' ';
     return 0;
 }

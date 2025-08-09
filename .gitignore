@@ -1,3 +1,5 @@
 *.in.txt
 *.in
 *.out
+*.exe
+*.png

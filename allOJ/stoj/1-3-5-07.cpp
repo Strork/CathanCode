@@ -16,6 +16,6 @@ int main() {
     }
     if (cnt) word[++len_word] = cnt;
     for (int i = 1; i < len_word; ++i) cout << word[i] << ',';
-    cout << word[len_word] << endl;
+    cout << word[len_word] << endl; 
     return 0;
 }
