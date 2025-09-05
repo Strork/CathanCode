@@ -11,9 +11,9 @@ int main() {
     while (yy <= 1900 + n - 1) {
         if ((yy % 400 == 0) || (yy % 4 == 0 && yy % 100 != 0)) month[2] = 29;
         else month[2] = 28; // 先处理 2 月的情况
-
         if (dd == 13) ans[week] += 1; // 统计 13 号是星期几
         dd += 1, week += 1; // 日期上涨
+        
         if (week == 8) week = 1; // 没有星期八，变成星期一
         if (dd > month[mm]) {
             mm += 1; // 到了下个月

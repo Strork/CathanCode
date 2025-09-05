@@ -6,7 +6,7 @@ int ans;
 
 void dfs(int x, int sum, int remain) {
     if (x <= 0) return; // 搜完了
-    //if (sum > r) return; // 已经超过了，不搜
+    if (sum > r) return; // 已经超过了，不搜
     //if (sum + remain < l) return; // 剩下的不够了，不搜
     if (sum+w[x] >= l && sum+w[x] <= r) ++ans; // 由于方案改变，累加和
     dfs(x-1, sum+w[x], remain-w[x]); // 选择第 x 种食物，、、、

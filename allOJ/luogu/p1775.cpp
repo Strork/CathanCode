@@ -7,16 +7,16 @@ int a[305];
 int main() {
     cin >> n;
     for (int i = 1; i <= n; ++i) {
-        cin >> a[i];
-        a[i] += a[i - 1];
+        cin >> a[i]; 
+        a[i] += a[i - 1]; // 前缀和
     }
-    for (int c = 2; c <= n; ++c) {
-        for (int i = 1; i < n; ++i) {
-            int j = i + c - 1;
-            if (j > n) break;
-            f[i][j] = 998244353;
-            for (int k = i; k < j; ++k) {
-                f[i][j] = min(f[i][j], f[i][k] + f[k + 1][j] + a[j] - a[i - 1]);
+    for (int len = 2; len <= n; ++len) {
+        for (int l = 1; l < n; ++l) {
+            int r = l + len - 1;
+            if (r > n) break;
+            f[l][r] = 1e9;
+            for (int k = l; k < r; ++k) {
+                f[l][r] = min(f[l][r], f[l][k] + f[k + 1][r] + a[r] - a[l - 1]);
             }
         }
     }
