@@ -1,18 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 short f[10010][10010];
-int ans;
-int p;
+int ans, p;
 
-short game(int x, int y, int round) {
-    if (f[x][y] > 0) return f[x][y]; // 返回已知情况
-    if (f[x][y] == -1) return 3; // 第二次访问，说明有循环，返回3
+short game(int x, int y) {
+    if (f[x][y] == -1) return -1; 
+    if (f[x][y]) return f[x][y];
+    f[x][y] = -1;
     if (x == 0) return 1;
-    else if (y == 0) return 2;
-    if (!f[x][y]) f[x][y] = -1; // flag 标记
-    if (round == 1) f[x][y] = game((x + y) % p, y, round^1);
-    else f[x][y] = game(x, (x + y) % p, round^1);
-    return f[x][y];
+    if (y == 0) return 2;
+    int num = (x + y) % p;
+    return f[x][y] = game(num, (num + y) % p);
 }
 
 int main() {
@@ -21,8 +19,8 @@ int main() {
     while (T--) {
         int x, y;
         cin >> x >> y;
-        ans = game(x, y, 1);
-        if (ans == 3) cout << "error" << endl;
+        ans = game(x, y);
+        if (ans == -1) cout << "error" << endl;
         else cout << ans << endl;
     }
     return 0;
