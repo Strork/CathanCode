@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-int sqr[100005];
+int sqr[100005]; // 完全平方数 1 4 9 16 25 36 .....
 int f[100005];
 int cnt, n;
 
@@ -13,7 +13,7 @@ void get_sqr() {
 int main() {
     cin >> n;
     get_sqr();
-    memset(f,  , sizeof(f));
+    memset(f, 0x3f, sizeof(f));
     f[0] = 0;
     for (int i = 1; i <= cnt; ++i) {
         for (int j = sqr[i]; j <= n; ++j) {
