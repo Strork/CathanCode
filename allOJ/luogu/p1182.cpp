@@ -1,47 +1,34 @@
 #include <bits/stdc++.h>
-#define ll long long
 using namespace std;
-ll a[100005];
-ll n, m;
-ll sum = 0;
-ll maxx = 0;
+int n, m;
+int a[100005];
 
-void binary_search(ll l, ll r) {
-    while (l+1 < r) {
-        ll mid = (l+r)/2;
-        ll cnt = 1;
-        sum = 0;
-        for (int i = 1; i <= n; ++i) {
-            if (sum + a[i] <= mid) {
-                sum += a[i];
-            } else {
-                ++cnt;
-                sum = a[i];
-            }
-        }
-        if (cnt > m) l = mid;
-        else r = mid;
-    }
-    ll cnt = 1;
+bool check(int x) {
+    int sum = 0, cnt = 1;
     for (int i = 1; i <= n; ++i) {
-        if (sum + a[i] <= l) {
-            sum += a[i];
-        } else {
+        if (sum + a[i] <= x) sum += a[i];
+        else {
             ++cnt;
             sum = a[i];
         }
     }
-    if (cnt > m) cout << r;
-    else cout << l << endl;
+    return cnt <= m;
 }
 
 int main() {
-    //freopen("a.in", "r", stdin);
     cin >> n >> m;
+    int l = 0, r = 0; 
     for (int i = 1; i <= n; ++i) {
         cin >> a[i];
-        maxx = max(a[i], maxx);
+        if (a[i] > l) l = a[i]; // L = 最大的数（至少单独成一段）
+        r += a[i]; // R = 所有数的和（只有一段）
     }
-    binary_search(maxx, 100000000);
+    int ans = 0;
+    while (l <= r) {
+        int mid = l + r >> 1;
+        if (check(mid)) r = mid - 1, ans = mid;
+        else l = mid + 1;
+    }
+    cout << ans << endl;
     return 0;
 }

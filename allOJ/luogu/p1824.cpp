@@ -1,38 +1,30 @@
 #include <bits/stdc++.h>
+#define ll long long
 using namespace std;
-int n, m;
-int loc[100010];
+int a[1000005];
+int b[1000005];
+int n;
+ll ans;
 
-int read() {
-    int read_num = 0, posibal = 1; char chh = 0;
-    while (!isdigit(chh)) { if (chh=='-') posibal=-1;chh=getchar(); }
-    while (isdigit(chh)) { read_num=read_num*10+(chh-'0');chh=getchar(); }
-    return read_num * posibal;
-}
-
-int get_ans(int l, int r) {
-    while (l+1 < r) {
-        int mid = l+r>>1;
-        int cnt = 1;
-        int now = loc[1];
-        for (int i = 2; i <= n; ++i) {
-            if (loc[i] - now >= mid) {
-                ++cnt;
-                now = loc[i];
-            }
-        }
-        if (cnt >= m) l = mid;
-        else r = mid;
+void mergeSort(int s, int t) {
+    if (s == t) return; // 一个数不用分d
+    int mid = s + t >> 1;
+    mergeSort(s, mid); // 拆左半边
+    mergeSort(mid + 1, t); // 右半边
+    int i = s, j = mid + 1, k = s;
+    while (i <= mid && j <= t) { // 判断边界
+        if (a[i] <= a[j]) b[k++] = a[i++]; // b[k] = a[i]; i+=1, k+=1;
+        else b[k++] = a[j++], ans += mid - i + 1;
     }
-    return l;
+    while (i <= mid) b[k++] = a[i++];
+    while (j <= t) b[k++] = a[j++]; // 谁没取完，执行哪个
+    for (int i = s; i <= t; ++i) a[i] = b[i];
 }
 
 int main() {
-    cin >> n >> m;
-    for (int i = 1; i <= n; ++i) {
-        loc[i] = read();
-    }
-    sort(loc+1, loc+1+n);
-    cout << get_ans(loc[1], loc[n]);
+    cin >> n;
+    for (int i = 1; i <= n; ++i) cin >> a[i];
+    mergeSort(1, n);
+    cout << ans << endl;
     return 0;
 }

@@ -1,10 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
-vis["1233"] = 1;
 
-int bfs() {
-    unordered_map<string, int> disa, disb;
-    disa["1234"] = 5;
-    disa["1233"] = disa["1234"] + 1;
-    disa.count("1233")
+int read() {
+    int read_num = 0, posibal = 1; char chh = 0;
+    while (!isdigit(chh)) { 
+        if (chh == '-') posibal = -1;
+        chh = getchar(); 
+    }
+    while (isdigit(chh)) { 
+        read_num = read_num * 10 + (chh - '0');
+        chh = getchar(); 
+    }
+    return read_num * posibal;
+}
+
+int main() {
+    return 0;
 }
