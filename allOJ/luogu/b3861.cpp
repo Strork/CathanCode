@@ -4,6 +4,16 @@ int ans[1050];
 int fa[1050];
 int n;
 
+struct edge{
+    int v, w;
+};
+vector<edge> a[10005];
+
+void add(int u, int v, int w) {
+    a[u].push_back({v, w});
+}   
+
+
 int main() {
     cin >> n;
     for (int i = 2; i <= n; ++i) {

@@ -1,43 +1,34 @@
 #include <bits/stdc++.h>
+#define ll long long
 using namespace std;
-typedef long long ll;
-struct node {
-    int y, v, next;
-}e[200005];
-int head[100005], id;
 int n;
-ll dis[100005];
-ll maxx;
+struct edge {
+    int y, v;
+};
+vector<edge> e[100005];
+ll ans, dis[100005], max_dis;
 
-inline void insert(int x, int y, int v) {
-    e[++id] = {y, v, head[x]};
-    head[x] = id;
-}
-
-void dfs(int x) {
-    for (int i = head[x]; i; i = e[i].next) {
-        int y = e[i].y, v = e[i].v;
-        if (dis[y] == -1) {
-            dis[y] = dis[x] + v;
-            if (dis[y] > maxx) maxx = dis[y];
-            dfs(y);
+void dfs(int x, int fa) {
+    for (int i = 0; i < e[x].size(); ++i) { // 找每个子节点
+        int y = e[x][i].y, v = e[x][i].v;
+        if (y != fa) { // 不往回走 !vis[y]
+            dis[y] = dis[x] + v; // 记录从 1 到 y 的路程
+            max_dis = max(max_dis, dis[y]); // 记录最远的一条路
+            ans += (v * 2);
+            dfs(y, x); // dfs(y);
         }
     }
 }
 
 int main() {
-    ll ans = 0;
     cin >> n;
     for (int i = 1; i < n; ++i) {
         int x, y, v;
         cin >> x >> y >> v;
-        insert(x, y, v);
-        insert(y, x, v);
-        ans += 2 * v;
+        e[x].push_back({y, v});
+        e[y].push_back({x, v});
     }
-    memset(dis, -1, sizeof(dis));
-    dis[1] = 0;
-    dfs(1);
-    cout << ans - maxx << endl;
+    dfs(1, 0);
+    cout << ans - max_dis << endl;
     return 0;
 }

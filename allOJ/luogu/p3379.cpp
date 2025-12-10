@@ -5,7 +5,7 @@ int fa[500005][26]; // 倍增数组
 int depth[500005]; // 深度
 int n, m, root;
 
-void dfs(int x, int father) {
+void dfs(int x, int fa) {
 	for (int i = 0; i < a[x].size(); ++i) { //遍历节点x的子节点
 		int y = a[x][i]; // 子节点记录为y
 		if (y == father) continue; // y是上一个点，跳过

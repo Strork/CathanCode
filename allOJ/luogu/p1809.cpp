@@ -19,8 +19,8 @@ int main() {
     long long ans = 0ll;
     while (n >= 4) {
         if (a[1] + a[n-1] < a[2] + a[2]) {
-            ans += a[n] + a[1];
-            --n;
+            ans += a[n] + a[1] + a[n-1] + a[1];
+            n -= 2;
         } else {
             ans += a[2] + a[1] + a[n] + a[2];
             n -= 2;

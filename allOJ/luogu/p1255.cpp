@@ -1,36 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
-int a[10005], b[10005], c[10005], la, lb, lc;
 int n;
-
-void sum_num() {
-    memset(c, 0, sizeof(c));
-    for (int i = 1; i <= lb; ++i) {
-        c[i] += a[i] + b[i];
-        if (c[i] > 9) c[i + 1]++, c[i] -= 10;
-    }
-    if (c[lb + 1]) lc = lb + 1;
-    else lc = lb;
-    for (int i = 1; i <= lb; ++i) a[i] = b[i];
-    la = lb;
-    for (int i = 1; i <= lc; ++i) b[i] = c[i];
-    lb = lc;
-}
+int a[5005][2500];
+int len[5005];
 
 int main() {
     cin >> n;
-    if (n <= 1) {
-        cout << 1 << endl;
-        return 0;
+    a[1][1] = 1; len[1] = 1;
+    a[2][1] = 2; len[2] = 1;
+    for (int i = 3; i <= n; ++i) { // 每次循环：前面两个数相加
+        for (int id = 1; id <= len[i - 1]; i++) {
+            a[i][id] += a[i - 1][id] + a[i - 2][id];
+            if (a[i][id] >= 10) a[i][id] -= 10, a[i][id + 1]++;
+        }
+        len[i] = len[i - 1];
+        if (a[i][len[i] + 1] > 0) len[i]++;
     }
-    else if (n == 2) {
-        cout << 2 << endl;
-        return 0;
-    }
-    a[1] = b[1] = 1, la = lb = 1;
-    for (int i = 2; i <= n; ++i) {
-        sum_num();
-    }
-    for (int i = lb; i >= 1; i--) cout << b[i];
+
     return 0;
 }

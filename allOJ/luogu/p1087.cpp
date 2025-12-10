@@ -1,27 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
-char ch[10005];
-int n;
+struct node {
+    int l, r;
+}a[1000005];
 
-char dfs(int x) {
-    if (ch[x]) {
-        cout << ch[x];
-        return ch[x];
+char dfs(int l, int r) {
+    if (l == r) {
+        char ch = s[l] == '0' ? 'B' : 'I'; // 0 为 B，1 为 I
+        cout << ch;
+        return ch;
     }
-    char l = dfs(x << 1);
-    char r = dfs((x << 1) + 1);
-    ch[x] = (l == r) ? l : 'F';
-    cout << ch[x];
-    return ch[x];
+    int mid = l + r >> 1;
+    char lch = dfs(l, mid);
+    char rch = dfs(mid + 1, r);
+    char ch = lch == rch ? lch : 'F';
+    cout << ch;
+    return ch;
 }
 
 int main() {
-    cin >> n;
-    for (int i = 1 << n; i < (2 << n); ++i) {
-        cin >> ch[i];
-        if (ch[i] == '1') ch[i] = 'I';
-        else ch[i] = 'B';
-    }
-    dfs(1);
+    cin >> n >> s;
+    dfs(0, s.size() - 1);
     return 0;
 }
