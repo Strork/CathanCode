@@ -5,9 +5,7 @@ int cnt = 0;
 int n, m;
 bool vis[100010];
 
-inline void addE(int x, int y) {
-    a[x].push_back(y);
-}
+inline void addE(int x, int y) { a[x].push_back(y); }
 
 void dfs(int x) {
     cout << x << ' ';
@@ -24,7 +22,7 @@ void bfs(int s) {
     memset(vis, 0, sizeof(vis));
     queue<int> q;
     vis[s] = 1;
-    q.push(s);
+    q.push(s);  // 起点入队
     while (!q.empty()) {
         int x = q.front();
         cout << x << ' ';
@@ -47,7 +45,7 @@ int main() {
         addE(x, y);
     }
     vis[1] = 1;
-    dfs(1); 
+    dfs(1);
     cout << endl;
     bfs(1);
     return 0;

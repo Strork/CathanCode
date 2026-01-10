@@ -9,8 +9,9 @@ vector<edge> e[100005];
 ll ans, dis[100005], max_dis;
 
 void dfs(int x, int fa) {
-    for (int i = 0; i < e[x].size(); ++i) { // 找每个子节点
-        int y = e[x][i].y, v = e[x][i].v;
+    // for (int i = 0; i < e[x].size(); ++i) { // 找每个子节点
+    for (auto i : e[x]) {
+        int y = i.y, v = i.v; // e[x][i].y
         if (y != fa) { // 不往回走 !vis[y]
             dis[y] = dis[x] + v; // 记录从 1 到 y 的路程
             max_dis = max(max_dis, dis[y]); // 记录最远的一条路

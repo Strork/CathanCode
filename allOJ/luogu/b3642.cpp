@@ -4,16 +4,24 @@ struct tr {
     int l, r;
     int high;
 }tree[1001000];
+int n;
 
-int dfs(int x) {
-    if (!x) return 0;
-    
-    int left_high = dfs(tree[x].l);
-    int right_higt = dfs(tree[x].r);
-    tree[x].high = max(left_high, right_higt) + 1;
+void dfs(int x, int op) {
+    if (x == 0) return;
+    if (op == 1) cout << x << ' ';
+    dfs(tree[x].l, op);
+    if (op == 2) cout << x << ' ';
+    dfs(tree[x].r, op);
+    if (op == 3) cout << x << ' ';
 }
 
 int main() {
-    dfs(1);
+    cin >> n;
+    for (int i = 1; i <= n; ++i) {
+        cin >> tree[i].l >> tree[i].r;
+    }
+    dfs(1, 1); cout << endl;
+    dfs(1, 2); cout << endl;
+    dfs(1, 3);
     return 0;
 }

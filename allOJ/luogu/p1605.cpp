@@ -3,8 +3,8 @@ using namespace std;
 int n, m, obs_num;
 int st, ed, fx, fy;
 bool vis[10][10];
-int dx[4] = {0,0,-1,1};
-int dy[4] = {1,-1,0,0};
+int dx[4] = {0, 0, -1, 1};
+int dy[4] = {1, -1, 0, 0};
 int ans;
 
 void dfs(int x, int y) {
@@ -15,10 +15,10 @@ void dfs(int x, int y) {
     for (int i = 0; i < 4; ++i) {
         int nx = x + dx[i];
         int ny = y + dy[i];
-        if (!nx || !ny || nx > n || ny > m) continue;
+        if (nx < 1 || ny < 1 || nx > n || ny > m) continue;
         if (!vis[nx][ny]) {
             vis[nx][ny] = 1;
-            dfs(nx,ny);
+            dfs(nx, ny);
             vis[nx][ny] = 0;
         }
     }
