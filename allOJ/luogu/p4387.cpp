@@ -21,8 +21,8 @@ int main() {
     cin >> T;
     while (T--) {
         cin >> n;
-        for (int i = 1; i <= n; ++i) cin >> a[i];
-        for (int i = 1; i <= n; ++i) cin >> b[i];
+        for (int i = 1; i <= n; ++i) cin >> a[i]; // 读入入栈序列
+        for (int i = 1; i <= n; ++i) cin >> b[i]; // 判断出栈序列
         if (check()) puts("Yes");
         else puts("No");
     }

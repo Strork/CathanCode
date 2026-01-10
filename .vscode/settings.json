@@ -97,6 +97,7 @@
         "flat_map": "cpp",
         "flat_set": "cpp",
         "queue": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "ciso646": "cpp"
     }
 }

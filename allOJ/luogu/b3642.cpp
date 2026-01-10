@@ -1,27 +1,39 @@
 #include <bits/stdc++.h>
 using namespace std;
-struct tr {
+struct tree {
     int l, r;
-    int high;
-}tree[1001000];
+} a[1000100];
 int n;
 
-void dfs(int x, int op) {
-    if (x == 0) return;
-    if (op == 1) cout << x << ' ';
-    dfs(tree[x].l, op);
-    if (op == 2) cout << x << ' ';
-    dfs(tree[x].r, op);
-    if (op == 3) cout << x << ' ';
+void pre(int x) {
+    if (!x) return;
+    cout << x << ' ';  // 根
+    pre(a[x].l);       // 左
+    pre(a[x].r);       // 右
+}
+
+void mid(int x) {
+    if (!x) return;
+    mid(a[x].l);       // 左
+    cout << x << ' ';  // 根
+    mid(a[x].r);       // 右
+}
+
+void net(int x) {
+    if (!x) return;
+    net(a[x].l);       // 左
+    net(a[x].r);       // 右
+    cout << x << ' ';  // 根
 }
 
 int main() {
     cin >> n;
-    for (int i = 1; i <= n; ++i) {
-        cin >> tree[i].l >> tree[i].r;
-    }
-    dfs(1, 1); cout << endl;
-    dfs(1, 2); cout << endl;
-    dfs(1, 3);
+    for (int i = 1; i <= n; ++i) cin >> a[i].l >> a[i].r;
+    pre(1);
+    cout << endl;
+    mid(1);
+    cout << endl;
+    net(1);
+    cout << endl;
     return 0;
 }

@@ -1,19 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
-int n, m;
-int w[3500], v[3500];
-int f[13000];
-
-int main() {
-    cin >> n >> m;
-    for (int i = 1; i <= n; ++i) {
-        cin >> w[i] >> v[i];
-    }
-    for (int i = 1; i <= n; ++i) {
-        for (int j = m; j >= w[i]; --j) {
-            f[j] = max(f[j-w[i]] + v[i], f[j]);
+int n, V;
+int v[230];
+int dp[23330];
+void so() {
+    for (int i = 1; i <= n; ++i) { // 枚举每个物品 i
+        for (int j = V; j >= v[i]; --j) { // 我付出 j，能得到的就是收获 f[i][j]
+            if (dp[j - v[i]] + v[i] > dp[j]) dp[j] = dp[j - v[i]] + v[i];
         }
     }
-    cout << f[m] << endl;
+}
+
+int main() {
+    cin >> V >> n;
+    for (int i = 1; i <= n; ++i) cin >> v[i];
+    so();
+    cout << V - dp[V] << endl;
     return 0;
 }
