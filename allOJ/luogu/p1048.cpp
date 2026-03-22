@@ -24,6 +24,7 @@ void dp2() {
 int main() {
     cin >> T >> n;
     for (int i = 1; i <= n; ++i) cin >> cost[i] >> got[i];
+    // dp1();
     dp2();
     return 0;
 }

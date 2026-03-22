@@ -1,29 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
-int n, s[1500], f[1500], dp[991000], k = 4e5, ans = -0x3f3f3f3f;
+const int N = 4e5 + 5;
+int n, eq[405], iq[405], f[N << 1], k = 4e5, ans = -0x7f3f3f3f;
 int main() {
     cin >> n;
-    memset(dp, -0x3f, sizeof(dp));
-    dp[k] = 0;
+    memset(f, -0x3f, sizeof(f));
+    f[k] = 0;
     for (int i = 1; i <= n; i++) {
-        cin >> s[i] >> f[i];
+        cin >> eq[i] >> iq[i];
     }
     for (int i = 1; i <= n; i++) {
-        if (f[i] >= 0) {
-            for (int j = 2 * k; j >= f[i]; j--) {
-                dp[j] = max(dp[j], dp[j - f[i]] + s[i]);
+        if (eq[i] >= 0) {
+            for (int j = 2 * k; j >= eq[i]; j--) {
+                f[j] = max(f[j], f[j - eq[i]] + iq[i]);
             }
         } else {
-            for (int j = 0; j <= 2 * k + f[i]; j++) {
-                dp[j] = max(dp[j], dp[j - f[i]] + s[i]);
+            for (int j = 0; j <= 2 * k + eq[i]; j++) {
+                f[j] = max(f[j], f[j - eq[i]] + iq[i]);
             }
         }
     }
     for (int i = k; i <= 2 * k; i++) {
-        if (dp[i] > 0) {
-            ans = max(ans, dp[i] + i - k);
+        if (f[i] >= 0) {
+            ans = max(ans, f[i] + i - k);
         }
     }
-    cout << ans;
+    cout << ans << endl;
     return 0;
 }

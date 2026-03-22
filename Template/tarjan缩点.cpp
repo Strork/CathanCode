@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 int dfn[1010];
 int low[1010];
 int n;
@@ -13,13 +13,16 @@ int ans[5];
 int num;
 struct qaq {
     int y, nt;
-}e[100100];
+} e[100100];
 int lin[1010];
 int len = 0;
- 
-char buf[1<<15], *fs, *ft;
+
+char buf[1 << 15], *fs, *ft;
 inline char getc() {
-    return (fs == ft && (ft = (fs = buf) + fread(buf, 1, 1<<15, stdin), fs == ft)) ? 0 : *fs++;
+    return (fs == ft &&
+            (ft = (fs = buf) + fread(buf, 1, 1 << 15, stdin), fs == ft))
+               ? 0
+               : *fs++;
 }
 inline int read() {
     char ch = getc();
@@ -35,19 +38,19 @@ inline int read() {
     }
     return k * f;
 }
- 
+
 void tarjan(int x) {
-    dfn[x] = low[x] = ++tim;
-    vis[stack[++top] = x] = 1;
+    dfn[x] = low[x] = ++tim;    // 对于新点，时间戳和最早值相等
+    vis[stack[++top] = x] = 1;  // 标记在栈中
     for (int i = lin[x]; i; i = e[i].nt) {
         int y = e[i].y;
         if (!dfn[y]) {
             tarjan(y);
-            low[x] = std::min(low[x], low[y]);
-        }
-        else if (vis[y]) low[x] = std::min(low[x], dfn[y]);
+            low[x] = std::min(low[x], low[y]);  // 回溯更新：出现环
+        } else if (vis[y])                      // 在栈中
+            low[x] = std::min(low[x], dfn[y]);  // 用更早的时间更新
     }
-    if (low[x] == dfn[x]) {
+    if (low[x] == dfn[x]) {  // 相等表示缩点后的 “大点”
         int k;
         ++num;
         do {
@@ -57,7 +60,7 @@ void tarjan(int x) {
         } while (k != x);
     }
 }
- 
+
 void solution() {
     for (int x = 1; x <= n; ++x) {
         for (int i = lin[x]; i; i = e[i].nt) {
@@ -72,16 +75,18 @@ void solution() {
         if (!rd[i]) ++ans[1];
         if (!cd[i]) ++ans[2];
     }
-    if (num == 1) printf("1\n0\n");
-    else printf("%d\n%d\n", ans[1], std::max(ans[1], ans[2]));
+    if (num == 1)
+        printf("1\n0\n");
+    else
+        printf("%d\n%d\n", ans[1], std::max(ans[1], ans[2]));
 }
- 
+
 inline void insert(int x, int y) {
     e[++len].nt = lin[x];
     lin[x] = len;
     e[len].y = y;
 }
- 
+
 int main() {
     n = read();
     for (int i = 1; i <= n; ++i) {

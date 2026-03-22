@@ -4,7 +4,7 @@ typedef long long ll;
 const int N = 1e5 + 5;
 ll n, m;
 struct farm {
-    int w, l, r;
+    ll w, l, r;
 } a[N];
 ll ans, got;
 ll tim[N], sum[N];
